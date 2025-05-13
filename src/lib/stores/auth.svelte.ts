@@ -34,9 +34,9 @@ export const login = async (request: LoginRequest): Promise<void> => {
 
         auth.token = token;
         auth.isAuthenticated = true; 
-
+        auth.error = null
     } catch (error) {
-        auth.error = error instanceof Error ? error.message : 'An error occured.';
+        auth.error = 'Wrong username or password bitch!!!'
     }
 
     auth.isLoading = false
