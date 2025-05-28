@@ -36,7 +36,7 @@ export const login = async (request: LoginRequest): Promise<void> => {
         auth.isAuthenticated = true; 
         auth.error = null
     } catch (error) {
-        auth.error = 'Wrong username or password bitch!!!'
+        auth.error = 'Wrong username or password'
     }
 
     auth.isLoading = false
