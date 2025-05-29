@@ -19,7 +19,6 @@
 
 <style>
     .demo-layout-container {
-        padding: 2rem;
         border: 1px solid black;
     }
 
