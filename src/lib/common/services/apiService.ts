@@ -1,12 +1,10 @@
-// src/lib/services/api.ts
 import axios, { type AxiosRequestConfig, type AxiosResponse, AxiosError, type AxiosInstance } from 'axios';
-import { auth, logout } from '$lib/stores/auth.svelte';
 import { browser } from '$app/environment';
+import { auth, logout } from '../stores/auth.svelte';
 
-// Create axios instance with default config
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: 'http://localhost:5198',
-    timeout: 15000, // 15 seconds
+    timeout: 15000,
     headers: {
         'Content-Type': 'application/json',
     }
@@ -31,7 +29,6 @@ axiosInstance.interceptors.response.use(
     (error: AxiosError) => {
         if (error.response?.status === 401) {
             console.log('Unauthorized')
-            logout();
         }
         
         const errorMessage = error.message || 'An unknown error occurred';
@@ -58,7 +55,6 @@ async function api<T = any>(endpoint: string, options: ApiOptions = {}): Promise
     return response.data;
 }
 
-// Convenience methods for common HTTP verbs
 export const apiGet = <T = any>(
     endpoint: string, 
     options: Omit<ApiOptions, 'method' | 'data'> = {}
@@ -91,6 +87,3 @@ export const apiDelete = <T = any>(
     options: Omit<ApiOptions, 'method'> = {}
 ): Promise<T> => 
     api<T>(endpoint, { ...options, method: 'DELETE' });
-
-// Export the axios instance for advanced use cases
-export { axiosInstance };
