@@ -1,8 +1,8 @@
 import { browser } from "$app/environment";
-import { storageKeys } from "$lib/common";
-import { apiPost } from "$lib/services/apiService";
-import type { User } from "$lib/types/domain.types";
-import type { LoginResponse, LoginRequest } from "$lib/types/requests.types";
+import { storageKeys } from "$lib/common/common";
+import type { LoginRequest, LoginResponse } from "$lib/features/user/user.requests";
+import type { User } from "$lib/features/user/user.types";
+import { apiPost } from "../services/apiService";
 
 export interface AuthState {
     user: User | null,
@@ -14,9 +14,9 @@ export interface AuthState {
 
 export const auth: AuthState = $state({
     user: null,
-    token: browser ? localStorage.getItem('token') : null,
+    token: browser ? localStorage.getItem(storageKeys.accessToken) : null,
     isLoading: false,
-    isAuthenticated: false,
+    isAuthenticated: browser ? localStorage.getItem(storageKeys.accessToken) ? true : false : false,
     error: null
 })
 
