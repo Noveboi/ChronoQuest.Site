@@ -1,6 +1,6 @@
 <script>
   export let text = "Default Title";
-  export let size = "2rem";                      
+  export let size = "2em";                      
 </script>
 
 <h1 style="font-size: {size};">
@@ -10,9 +10,9 @@
 <style>
   h1 {
     color: white;
-    margin: 0.5em 0;
-    font-weight: 70%;
     line-height: 1.2px;
     text-align: center;
+    margin-bottom: 5rem;
+    font-weight: lighter;
   }
 </style>
