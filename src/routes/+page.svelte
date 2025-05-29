@@ -1,24 +1,14 @@
 <script lang="ts">
-import Title from "$lib/features/chapters/components/Title.svelte";
-import Button from "$lib/features/chapters/components/Button.svelte";
-
-function handleClick() {
-alert("Button clicked!");
-}
+    import Navigate from "$lib/common/components/Navigate.svelte";
+    import Title from "$lib/common/components/Title.svelte";
 </script>
 
 <Title text="Welcome!" size="4em" />
 
 <div class="button-container">
-    <Button on:click={handleClick} >
-    Chapters
-    </Button>
-    <Button on:click={handleClick} >
-    Extras
-    </Button>
-    <Button on:click={handleClick} >
-    Statistics
-    </Button>
+    <Navigate to='/chapters'>Chapters</Navigate>
+    <Navigate to='/extras'>Extras</Navigate> <!-- What is this? -->
+    <Navigate to='/stats'>Statistics</Navigate>
 </div>
 
 <style>
