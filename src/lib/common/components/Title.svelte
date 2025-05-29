@@ -1,6 +1,5 @@
 <script>
-  export let text = "Default Title";
-  export let size = "2em";                      
+  const { text = "Default Title", size = "2em" } = $props();
 </script>
 
 <h1 style="font-size: {size};">
