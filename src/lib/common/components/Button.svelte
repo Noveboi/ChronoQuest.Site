@@ -4,12 +4,11 @@
   type ButtonProps = { 
     onClick?: () => Promise<void>, 
     type?: 'button' | 'submit', 
+    loading: boolean,
     children: Snippet };
 
-  const { onClick, type = 'button', children }: ButtonProps = $props();
+  let { onClick, children, loading = $bindable(), type = 'button' }: ButtonProps = $props();
     
-  let loading = $state(false);
-
   async function handleClick() {
     if (onClick !== undefined) {
       loading = true;
@@ -50,15 +49,15 @@
   display: inline-block;
   box-sizing: border-box;
 
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
 }
 .spinner:after {
   content: " ";
-  box-sizing: border-box;
   display: block;
-  width: 64px;
-  height: 64px;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
   margin: 8px;
   border-radius: 50%;
   border: 6.4px solid currentColor;
