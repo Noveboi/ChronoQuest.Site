@@ -1,6 +1,8 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse, AxiosError, type AxiosInstance } from 'axios';
 import { browser } from '$app/environment';
-import { auth, logout } from '../../features/auth/auth.svelte';
+import { auth, logout } from '../features/auth/auth.svelte';
+import { toast } from '@zerodevx/svelte-toast';
+import { ValidationError } from './common';
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: 'http://localhost:5198',
@@ -29,12 +31,16 @@ axiosInstance.interceptors.response.use(
     (response) => response,
     (error: AxiosError) => {
         if (error.response?.status === 401) {
-            console.log('Unauthorized')
+            toast.push('You are unauthorized.')
+            logout();
+        }
+
+        if (error.response?.status === 400) {
+            toast.push('Invalid');
+            return;
         }
         
-        const errorMessage = error.message || 'An unknown error occurred';
-            
-        return Promise.reject(new Error(errorMessage));
+        toast.push(`Error 😭 (${error.response?.status})`)
     }
 );
 
