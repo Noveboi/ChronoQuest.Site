@@ -12,6 +12,8 @@
 
 <div class="login-container">
     <Form onSubmit={handleLogin}/>
+
+    <a href="/register">Create Account</a>
 </div>
 
 <style>
