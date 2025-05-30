@@ -1,5 +1,5 @@
 import { goto } from "$app/navigation";
-import { auth } from "../stores/auth.svelte";
+import { auth } from "../../features/auth/auth.svelte";
 
 type GuardFn = () => void;
 const noOp = () => {};
@@ -9,7 +9,7 @@ export const isAuthenticated = (url: URL): GuardFn => {
         return () => goto('/');
     }
 
-    if (url.href.includes('login')) {
+    if (!auth.isAuthenticated && !url.href.includes('login')) {
         return () => goto('/login')
     }
 
