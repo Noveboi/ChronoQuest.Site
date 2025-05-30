@@ -1,20 +1,17 @@
 <script lang="ts">
-import Title from "$lib/features/chapters/components/Title.svelte";
-import Form from "$lib/features/chapters/components/Form.svelte";
-import Button from "$lib/features/chapters/components/Button.svelte";
+    import Title from "$lib/common/components/Title.svelte";
+    import { login } from "$lib/common/stores/auth.svelte";
+    import Form from "$lib/features/user/Form.svelte";
 
-function handleClick() {
-alert("Button clicked!");
-}
+    function handleLogin(email: string, password: string){
+        login({email, password})
+    }
 </script>
 
 <Title text="Login" size="4em" />
 
 <div class="login-container">
-    <Form />
-    <Button on:click={handleClick} >
-    Enter
-    </Button>
+    <Form onSubmit={handleLogin}/>
 </div>
 
 <style>
