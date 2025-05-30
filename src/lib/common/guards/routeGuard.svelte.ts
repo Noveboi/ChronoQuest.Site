@@ -5,11 +5,11 @@ type GuardFn = () => void;
 const noOp = () => {};
 
 export const isAuthenticated = (url: URL): GuardFn => {
-    if (auth.isAuthenticated && url.href.includes('login')) {
+    if (auth.isAuthenticated && url.href.endsWith('login')) {
         return () => goto('/');
     }
 
-    if (!auth.isAuthenticated && !url.href.includes('login')) {
+    if (!auth.isAuthenticated && !url.href.endsWith('login') && !url.href.endsWith('register')) {
         return () => goto('/login')
     }
 
