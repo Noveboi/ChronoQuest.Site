@@ -2,7 +2,7 @@ import { browser } from "$app/environment";
 import { storageKeys } from "$lib/common/common";
 import type { LoginRequest, LoginResponse } from "$lib/features/user/user.requests";
 import type { User } from "$lib/features/user/user.types";
-import { apiPost } from "../services/apiService";
+import { apiPost } from "../../common/services/apiService";
 
 export interface AuthState {
     user: User | null,

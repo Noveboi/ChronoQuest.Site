@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig, type AxiosResponse, AxiosError, type AxiosInstance } from 'axios';
 import { browser } from '$app/environment';
-import { auth, logout } from '../stores/auth.svelte';
+import { auth, logout } from '../../features/auth/auth.svelte';
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: 'http://localhost:5198',
@@ -16,6 +16,7 @@ axiosInstance.interceptors.request.use(
         if (browser) {
             if (auth.token && config.headers) {
                 config.headers.Authorization = `Bearer ${auth.token}`;
+                logout();
             }
         }
         return config;
