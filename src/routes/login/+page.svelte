@@ -1,10 +1,10 @@
 <script lang="ts">
     import Title from "$lib/common/components/Title.svelte";
-    import { login } from "$lib/common/stores/auth.svelte";
+    import { login } from "$lib/features/auth/auth.svelte";
     import Form from "$lib/features/user/Form.svelte";
 
     function handleLogin(email: string, password: string){
-        login({email, password})
+        return login({email, password})
     }
 </script>
 
