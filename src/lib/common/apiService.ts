@@ -2,7 +2,6 @@ import axios, { type AxiosRequestConfig, type AxiosResponse, AxiosError, type Ax
 import { browser } from '$app/environment';
 import { auth, logout } from '../features/auth/auth.svelte';
 import { toast } from '@zerodevx/svelte-toast';
-import { ValidationError } from './common';
 
 const axiosInstance: AxiosInstance = axios.create({
     baseURL: 'http://localhost:5198',
@@ -31,6 +30,7 @@ axiosInstance.interceptors.response.use(
     (error: AxiosError) => {
         if (error.response?.status === 401) {
             toast.push('You are unauthorized.')
+            logout();
             return;
         }
 
