@@ -1,4 +1,4 @@
-import { apiPost } from "$lib/common/services/apiService";
+import { apiPost } from "$lib/common/apiService";
 import type { RegisterRequest } from "./user.requests";
 
 export const register = async (request: RegisterRequest): Promise<void> => {

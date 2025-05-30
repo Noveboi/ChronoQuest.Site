@@ -1,4 +1,4 @@
-import { apiGet } from "$lib/common/services/apiService"
+import { apiGet } from "$lib/common/apiService"
 import type { Chapter, ChapterPreview } from "../chapters.types"
 
 // Store
