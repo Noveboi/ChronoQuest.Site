@@ -11,7 +11,13 @@
 
   async function handleSubmit() {
     loading = true;
-    await onSubmit(email, password);
+
+    try {
+      await onSubmit(email, password);
+    } catch (err) { 
+      loading = false;
+    }
+
     loading = false;
   }
 
