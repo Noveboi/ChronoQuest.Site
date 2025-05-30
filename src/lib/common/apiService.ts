@@ -18,7 +18,6 @@ axiosInstance.interceptors.request.use(
         if (browser) {
             if (auth.token && config.headers) {
                 config.headers.Authorization = `Bearer ${auth.token}`;
-                logout();
             }
         }
         return config;
@@ -32,7 +31,7 @@ axiosInstance.interceptors.response.use(
     (error: AxiosError) => {
         if (error.response?.status === 401) {
             toast.push('You are unauthorized.')
-            logout();
+            return;
         }
 
         if (error.response?.status === 400) {

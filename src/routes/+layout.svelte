@@ -5,7 +5,6 @@
     import { SvelteToast } from '@zerodevx/svelte-toast';
 
     let { data, children }: LayoutProps = $props()
-
     $effect(() => isAuthenticated(data.url)())
 </script>
 
