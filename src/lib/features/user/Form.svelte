@@ -1,15 +1,18 @@
 <script lang="ts">
     import Button from "$lib/common/components/Button.svelte";
-    import { auth } from "$lib/common/stores/auth.svelte";
+    import { auth } from "$lib/features/auth/auth.svelte";
 
   type FormProps = { onSubmit: (email: string, password: string) => Promise<void> }
 
   const { onSubmit }: FormProps = $props();
   let email = $state('');
   let password = $state('');
+  let loading = $state(false);
 
   async function handleSubmit() {
-    const isSuccess = await onSubmit(email, password);
+    loading = true;
+    await onSubmit(email, password);
+    loading = false;
   }
 
 </script>
@@ -17,7 +20,7 @@
 <form class="form-container" onsubmit={handleSubmit}>
   <input type="text" placeholder="Email" bind:value={email} />
   <input type="password" placeholder="Password" bind:value={password} />
-  <Button type="submit">Enter</Button>
+  <Button {loading} type="submit">Enter</Button>
 </form>
 
 {#if auth.error}
