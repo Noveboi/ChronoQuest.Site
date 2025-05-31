@@ -24,8 +24,10 @@ export const logout = () => {
     auth.isAuthenticated = false;
     auth.user = null;
     auth.token = null;
-
-    localStorage.removeItem(storageKeys.accessToken);
+    
+    if (browser) {
+        localStorage.removeItem(storageKeys.accessToken);
+    }
 }
 export const login = async (request: LoginRequest): Promise<void> => {
     try {
