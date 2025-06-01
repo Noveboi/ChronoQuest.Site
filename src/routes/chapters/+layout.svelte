@@ -7,5 +7,15 @@
 
 {@render children()}
 
-<Arrow to= "">
-</Arrow>
+<div class="arrow-container">
+    <Arrow to= "">
+    </Arrow>
+</div>
+
+<style>
+    .arrow-container {
+        display: flex;
+        align-items: start;
+        justify-content: center;
+    }
+</style>
