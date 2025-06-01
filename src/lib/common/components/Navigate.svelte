@@ -2,12 +2,11 @@
     import Button from "./Button.svelte";
     import type { Snippet } from "svelte";
 
-    type NavigateProps = { to: string, children: Snippet }
+    type NavigateProps = { to: string, children: Snippet, style?: string | CSSStyleDeclaration }
 
-    const { to, children }: NavigateProps = $props();
+    const { to, children, style }: NavigateProps = $props();
 </script>
 
 <a href={to}>
-    <Button children={children}>
-    </Button>
+    <Button {style} {children} />
 </a>

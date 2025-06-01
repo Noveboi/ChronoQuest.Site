@@ -1,17 +1,16 @@
 <script>
-  const { text = "Default Title", size = "2em" } = $props();
+  const { text = "Default Title", size = "2em", color = "white" } = $props();
 </script>
 
-<h1 style="font-size: {size};">
+<h1 style="font-size: {size}; color: {color};">
   {text}
 </h1>
 
 <style>
   h1 {
-    color: white;
     line-height: 1.2px;
     text-align: center;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     font-weight: lighter;
   }
 </style>

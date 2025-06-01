@@ -4,10 +4,11 @@
   type ButtonProps = { 
     onClick?: () => Promise<void>, 
     type?: 'button' | 'submit', 
-    loading: boolean,
+    loading?: boolean,
+    style?: string | CSSStyleDeclaration,
     children: Snippet };
 
-  let { onClick, children, loading = $bindable(), type = 'button' }: ButtonProps = $props();
+  let { onClick, children, style, loading = $bindable(), type = 'button' }: ButtonProps = $props();
     
   async function handleClick() {
     if (onClick !== undefined) {
@@ -19,7 +20,7 @@
 
 </script>
 
-<button type={type} onclick={handleClick}>
+<button style={style} type={type} onclick={handleClick}>
   {#if loading}
     <span class="spinner"></span>
   {/if}
@@ -30,8 +31,8 @@
   button {
     background-color: #FF4203;
     color: white;
-    width: 12rem;
-    padding: 0.5em 1em;
+    min-width: 8em;
+    padding: 0.5em 1em 0.5em 1em;
     margin: 0.5rem;
     font-size: 2em;
     border: none;

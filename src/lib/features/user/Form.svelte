@@ -40,12 +40,15 @@
     flex-direction: column;
     gap: 1rem;
     margin: 0 auto;
+    align-items: center;
+    justify-content: center;
   }
 
   .form-container input {
-    padding: 0.75em;
+    padding: 1em;
     border: 1px solid #ccc;
-    border-radius: 0.5rem;
+    border-radius: 0.8rem;
+    width: 16rem;
     font-size: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   }

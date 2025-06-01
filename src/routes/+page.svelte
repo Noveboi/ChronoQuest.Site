@@ -6,8 +6,7 @@
 <Title text="Welcome!" size="4em" />
 
 <div class="button-container">
-    <Navigate to='/chapters'>Chapters</Navigate>
-    <Navigate to='/extras'>Extras</Navigate> <!-- What is this? -->
+    <Navigate to='/chapters'>Start</Navigate>
     <Navigate to='/stats'>Statistics</Navigate>
 </div>
 
