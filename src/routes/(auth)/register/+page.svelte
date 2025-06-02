@@ -6,5 +6,5 @@
 <Title size='large'>
     Register
 </Title>
-<Form action='register'/>
+<Form />
 <a href="/login">Login</a>

@@ -1,13 +1,8 @@
 <script lang="ts">
     import Button from "$lib/common/components/Button.svelte";
-  type FormProps = { 
-    action: 'login' | 'register'
-  }
-
-  const { action }: FormProps = $props();
 </script>
 
-<form class="form-container" method="POST" action="/{action}">
+<form class="form-container" method="POST">
   <input name="email" type="email" placeholder="Email"/>
   <input name="password" type="password" placeholder="Password"/>
   <Button type="submit">Enter</Button>

@@ -1,11 +1,11 @@
+import { getRequestEvent } from "$app/server";
 import { cookieName } from "$lib/features/auth/auth.constants";
-import type { InterceptorFn } from "../backend";
+import type { InterceptorFn } from "../../common/backend";
 
 export const setCookieInterceptor = (): InterceptorFn => {
-    return (resp, { cookies }) => {
+    return (resp) => {
         if (resp.status !== 200) 
             return;
-
 
         const cookieHeaders = resp.headers.getSetCookie();
         if (cookieHeaders.length === 0) {
@@ -26,6 +26,8 @@ export const setCookieInterceptor = (): InterceptorFn => {
             throw new Error('Cookie "expires" is required but was not found')
         }
         const [_, expirationDate] = expiration.split('=')
+        
+        const { cookies } = getRequestEvent();
 
         cookies.set(name, value, {
             httpOnly: true,

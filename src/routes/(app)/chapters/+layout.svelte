@@ -7,7 +7,7 @@
 
 <div>
     {#each data.chapters as chapter}
-        <a href="/chapters/{chapter.id}">{chapter.title}</a>
+        <a data-sveltekit-preload-data='tap' href="/chapters/{chapter.id}">{chapter.title}</a> <br/>
     {/each}
 </div>
 

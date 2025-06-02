@@ -9,7 +9,7 @@
 <Title size='large'> Login </Title>
 
 <div class="login-container">
-    <Form action='login'/>
+    <Form />
     <a href="/register">Create Account</a>
 
     {#each form?.errors ?? [] as error}

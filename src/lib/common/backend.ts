@@ -1,30 +1,28 @@
 import type { RequestEvent } from "@sveltejs/kit";
 
 type BackendRequestOptions = Omit<RequestInit, 'body' | 'method'>;
-export type InterceptorFn = (response: Response, event: Event) => void;
+export type InterceptorFn = (response: Response) => void;
 
 export interface Backend {
+    send(route: string, options?: RequestInit): Promise<Response>
     get<T>(route: string, options?: BackendRequestOptions): Promise<T>
     post<T = any>(route: string, data?: any, options?: BackendRequestOptions): Promise<T>
 
-    addInterceptor(callback: InterceptorFn): void
+    addServerInterceptor(callback: InterceptorFn): void
 }
 
-type FetchApi = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 type Event = RequestEvent<Partial<Record<string, string>>, string | null>;
 
 class BackendClass implements Backend {
     private _fetch;
-    private _event;
     private _baseUrl: string
     private _headers: Headers
     private _interceptors: InterceptorFn[];
 
     private _logTemplate = 'HTTP %s %s';
 
-    constructor(event: Event, baseUrl: string) {
-        this._fetch = event.fetch;
-        this._event = event;
+    constructor(fetch: FetchApi, baseUrl: string) {
+        this._fetch = fetch;
         this._baseUrl = baseUrl;
         this._interceptors = [];
 
@@ -32,12 +30,33 @@ class BackendClass implements Backend {
         this._headers.append('Content-Type', 'application/json')
     }
 
-    addInterceptor(callback: InterceptorFn): void {
+    addServerInterceptor(callback: InterceptorFn): void {
         this._interceptors.push(callback);
     }
 
+    async send(route: string, options: RequestInit): Promise<Response> {
+        if (!route.startsWith('/')) 
+            route = '/' + route;
+        
+        const url = this._baseUrl + route;
+
+        if (options.method === 'GET') {
+            this._headers.delete('Content-Type');
+        }
+
+        console.log(this._logTemplate + ' started', options.method, url)
+        let response = await this._fetch(url, { ...options, headers: this._headers});
+        console.log(this._logTemplate + ' responded %d', options.method, url, response.status)
+
+        for (const inteceptor of this._interceptors) {
+            inteceptor(response);
+        }
+
+        return response;
+    }
+
     get<T>(route: string, options?: BackendRequestOptions): Promise<T> {
-        return this.call<T>(route, {...options, method: 'GET'})
+        return this.call<T>(route, {...options, method: 'GET', body: null})
     }
     post<T = any>(route: string, data?: any, options?: BackendRequestOptions): Promise<T> {
         const body = JSON.stringify(data);
@@ -45,30 +64,22 @@ class BackendClass implements Backend {
     }
 
     private async call<T>(route: string, options: RequestInit): Promise<T> {
-        if (!route.startsWith('/')) 
-            route = '/' + route;
-        
-        const url = this._baseUrl + route;
-
-        console.log(this._logTemplate + ' started', options.method, url)
-        let response = await this._fetch(url, { ...options, headers: this._headers});
-        console.log(this._logTemplate + ' responded %d', options.method, url, response.status)
-
-        for (const inteceptor of this._interceptors) {
-            inteceptor(response, this._event);
-        }
+        const response = await this.send(route, options);
 
         if (response.status === 200) {
-            if (response.bodyUsed)
+            try {
                 return await response.json();
-            
-            return null as T;
+            } catch {
+                return null as T;
+            }
         }
 
         throw new Error(response.statusText);
     }
 }
+ 
+type FetchApi = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
 
-export const initApiService = (event: Event, baseUrl: string): Backend => {
-    return new BackendClass(event, baseUrl);
-};
+export const api = (fetch: FetchApi): Backend => {
+    return new BackendClass(fetch, 'http://localhost:5198');
+}

@@ -8,8 +8,7 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			user: User | null,
-			api: Backend
+			user: User
 		}
 		// interface PageData {}
 		// interface PageState {}
