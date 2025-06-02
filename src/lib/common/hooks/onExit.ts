@@ -1,9 +1,9 @@
-import { beforeNavigate } from "$app/navigation"
+import { beforeNavigate, onNavigate } from "$app/navigation"
 
-export const onExit = (callback: () => void) => {
-    beforeNavigate(nav => {
+export function onExit<T>(callback: () => Promise<T>): void {
+    onNavigate(async nav => {
         if (nav.to?.url.pathname !== nav.from?.url.pathname) {
-            callback();
+            await callback();
         }
     })
 }
