@@ -1,3 +1,3 @@
 export type IconProps = {
-    size: number
+    size?: number
 }

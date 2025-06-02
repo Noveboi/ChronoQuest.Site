@@ -10,11 +10,17 @@
     <Navigate to='/stats'>Statistics</Navigate>
 </div>
 
-<style>
-.button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
+<style lang="scss">
+    .button-container {
+        min-width: 16em;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+
+        gap: 1em;
+
+        :global(button) {
+            width: 100%;
+        }
+    }
 </style>

@@ -8,7 +8,7 @@
 
     let { children }: LayoutProps = $props()
 
-    const style = "min-width: 0; padding: 8px 16px;";
+    const style = "padding: 8px 16px;"
 
     async function logout() {
         await fetch('/logout', { method: 'POST' });
@@ -18,10 +18,10 @@
 
 <div class="toolbar">
     <Button type="button" {style} onClick={logout} showLoadingIndicator={false}>
-        <LogoutIcon/>
+        <LogoutIcon />
     </Button>
     <Navigate to='/' {style}>
-        <HomeIcon/>
+        <HomeIcon />
     </Navigate>
 </div>
 
@@ -29,7 +29,7 @@
     {@render children()}
 </main>
 
-<style>
+<style lang="scss">
     .content {
         display: flex;
         flex-direction: column;
@@ -39,5 +39,8 @@
     }
     .toolbar {
         position: absolute;
+        display: flex;
+        padding: .5em;
+        gap: .5em;
     }
 </style>
