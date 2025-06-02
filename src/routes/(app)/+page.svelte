@@ -3,7 +3,7 @@
     import Title from "$lib/common/components/Title.svelte";
 </script>
 
-<Title text="Welcome!" size="4em" />
+<Title size='large'> Welcome! </Title>
 
 <div class="button-container">
     <Navigate to='/chapters'>Start</Navigate>

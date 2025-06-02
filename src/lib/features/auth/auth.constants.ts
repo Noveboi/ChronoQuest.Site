@@ -1,0 +1,1 @@
+export const cookieName: string = '.AspNetCore.Identity.Application';

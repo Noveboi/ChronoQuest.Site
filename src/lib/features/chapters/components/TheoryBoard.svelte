@@ -1,12 +1,12 @@
 <script>
-    import Button from "./Button.svelte";
-    import Title from "./Title.svelte";
+    import Button from "../../../common/components/Button.svelte";
+    import Title from "../../../common/components/Title.svelte";
 
-    const { text = "Default Text", size = "2em" } = $props();
+    const { text = "Default Text", } = $props();
 </script>
 
 <div class="background chapter-container">
-    <Title text="Chapter" size="4em" color="black" />
+    <Title size='large' color='dark'>Chapter Title</Title>
     <p>
         {@html text}
     </p>

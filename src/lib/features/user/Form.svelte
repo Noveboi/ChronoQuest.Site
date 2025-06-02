@@ -1,37 +1,17 @@
 <script lang="ts">
     import Button from "$lib/common/components/Button.svelte";
-    import { auth } from "$lib/features/auth/auth.svelte";
-
-  type FormProps = { onSubmit: (email: string, password: string) => Promise<void> }
-
-  const { onSubmit }: FormProps = $props();
-  let email = $state('');
-  let password = $state('');
-  let loading = $state(false);
-
-  async function handleSubmit() {
-    loading = true;
-
-    try {
-      await onSubmit(email, password);
-    } catch (err) { 
-      loading = false;
-    }
-
-    loading = false;
+  type FormProps = { 
+    action: 'login' | 'register'
   }
 
+  const { action }: FormProps = $props();
 </script>
 
-<form class="form-container" onsubmit={handleSubmit}>
-  <input type="text" placeholder="Email" bind:value={email} />
-  <input type="password" placeholder="Password" bind:value={password} />
-  <Button {loading} type="submit">Enter</Button>
+<form class="form-container" method="POST" action="/{action}">
+  <input name="email" type="email" placeholder="Email"/>
+  <input name="password" type="password" placeholder="Password"/>
+  <Button type="submit">Enter</Button>
 </form>
-
-{#if auth.error}
-  <p class="error">{auth.error}</p>
-{/if}
 
 <style>
   .form-container {
