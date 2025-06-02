@@ -7,8 +7,6 @@ export interface Backend {
     send(route: string, options?: RequestInit): Promise<Response>
     get<T>(route: string, options?: BackendRequestOptions): Promise<T>
     post<T = any>(route: string, data?: any, options?: BackendRequestOptions): Promise<T>
-
-    addServerInterceptor(callback: InterceptorFn): void
 }
 
 type Event = RequestEvent<Partial<Record<string, string>>, string | null>;
@@ -21,10 +19,10 @@ class BackendClass implements Backend {
 
     private _logTemplate = 'HTTP %s %s';
 
-    constructor(fetch: FetchApi, baseUrl: string) {
+    constructor(fetch: FetchApi, baseUrl: string, interceptors: InterceptorFn[]) {
         this._fetch = fetch;
         this._baseUrl = baseUrl;
-        this._interceptors = [];
+        this._interceptors = interceptors;
 
         this._headers = new Headers();
         this._headers.append('Content-Type', 'application/json')
@@ -79,7 +77,10 @@ class BackendClass implements Backend {
 }
  
 type FetchApi = (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+type ClientOptions = {
+    useInterceptors: InterceptorFn[]
+}
 
-export const api = (fetch: FetchApi): Backend => {
-    return new BackendClass(fetch, 'http://localhost:5198');
+export const api = (fetch: FetchApi, options?: ClientOptions): Backend => {
+    return new BackendClass(fetch, 'http://localhost:5198', options?.useInterceptors ?? []);
 }

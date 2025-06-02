@@ -2,7 +2,7 @@ import { getRequestEvent } from "$app/server";
 import { cookieName } from "$lib/features/auth/auth.constants";
 import type { InterceptorFn } from "../../common/backend";
 
-export const setCookieInterceptor = (): InterceptorFn => {
+export const setCookie = (): InterceptorFn => {
     return (resp) => {
         if (resp.status !== 200) 
             return;
