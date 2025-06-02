@@ -5,16 +5,17 @@
     onClick?: () => Promise<void>, 
     type?: 'button' | 'submit', 
     loading?: boolean,
-    style?: string | CSSStyleDeclaration,
+    showLoadingIndicator?: boolean
+    style?: string,
     children: Snippet };
 
-  let { onClick, children, style, loading = $bindable(), type = 'button' }: ButtonProps = $props();
+  let { onClick, children, style, loading = $bindable(), type = 'button', showLoadingIndicator = true }: ButtonProps = $props();
     
   async function handleClick() {
     if (onClick !== undefined) {
-      loading = true;
+      showLoadingIndicator && (loading = true);
       await onClick();
-      loading = false;
+      showLoadingIndicator && (loading = false);
     }
   } 
 
@@ -32,7 +33,7 @@
     background-color: #FF4203;
     color: white;
     min-width: 8em;
-    padding: 0.5em 1em 0.5em 1em;
+    padding: 0.5em 1em;
     margin: 0.5rem;
     font-size: 2em;
     border: none;
