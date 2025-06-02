@@ -1,14 +1,11 @@
 <script lang="ts">
-    import type { Chapter } from "$lib/features/chapters/chapters.types";
     import TheoryBoard from "$lib/features/chapters/TheoryBoard.svelte";
     import type { PageProps } from "./$types";
+    import { onExit } from "$lib/common/hooks/onExit";
 
     let { data }: PageProps = $props();
-    const chapter: Chapter = {
-        id: '',
-        title: 'Example!',
-        content: 'Blah blah blahh......'
-    } 
+
+    onExit(() => fetch(`/chapters/${data.chapter.id}`))
 </script>
 
-<TheoryBoard {chapter}/>
+<TheoryBoard chapter={data.chapter}/>
