@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { Chapter } from "$lib/features/chapters/chapters.types";
-    import TheoryBoard from "$lib/features/chapters/components/TheoryBoard.svelte";
+    import TheoryBoard from "$lib/features/chapters/TheoryBoard.svelte";
     import type { PageProps } from "./$types";
 
     let { data }: PageProps = $props();

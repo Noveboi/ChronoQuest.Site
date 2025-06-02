@@ -1,7 +1,7 @@
 <script lang="ts">
-    import Button from "../../../common/components/Button.svelte";
-    import Title from "../../../common/components/Title.svelte";
-    import type { Chapter } from "../chapters.types";
+    import Button from "../../common/components/Button.svelte";
+    import Title from "../../common/components/Title.svelte";
+    import type { Chapter } from "./chapters.types";
 
     const { chapter }: { chapter: Chapter } = $props();
 </script>
