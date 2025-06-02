@@ -5,7 +5,7 @@
 
     let { data }: PageProps = $props();
 
-    onExit(() => fetch(`/chapters/${data.chapter.id}`))
+    onExit(async () => await fetch(`/chapters/${data.chapter.id}`))
 </script>
 
 <TheoryBoard chapter={data.chapter}/>

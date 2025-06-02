@@ -1,15 +1,11 @@
 import { redirect } from "@sveltejs/kit";
 import type { Actions, PageServerLoad } from "./$types";
 import { api } from "$lib/common/backend";
+import { setCookie } from "$lib/server/inteceptors/set-cookie.interceptor";
+import { elasticIn } from "svelte/easing";
 
 interface LoginResponse {
     errors: readonly string[]
-}
-
-export const load: PageServerLoad = async (input) => {
-    return {
-        
-    }
 }
 
 export const actions: Actions = {
@@ -18,14 +14,18 @@ export const actions: Actions = {
         const email = data.get('email')?.toString() ?? '';
         const password = data.get('password')?.toString() ?? '';
 
+        const login = api(fetch, {
+            useInterceptors: [setCookie()]
+        })
+
         try {
-            await api(fetch).post('/login?useCookies=true', { email, password });
+            await login.post('/login?useCookies=true', { email, password });
         } catch (err) {
             console.log('Caught error.', err)
             return { errors: ['Wrong username or password.']}
         }
-
+    
         console.log('Logged in, redirecting to home page');
-        throw redirect(303, '/')
+        redirect(303, '/')
     }
 }
