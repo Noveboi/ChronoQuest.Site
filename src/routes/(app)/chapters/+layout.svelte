@@ -5,6 +5,12 @@
     let { data, children }: LayoutProps = $props();
 </script>
 
+<div>
+    {#each data.chapters as chapter}
+        <a href="/chapters/{chapter.id}">{chapter.title}</a>
+    {/each}
+</div>
+
 {@render children()}
 
 <div class="arrow-container">

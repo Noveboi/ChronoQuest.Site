@@ -12,7 +12,6 @@ export const setCookieInterceptor = (): InterceptorFn => {
             return;
         }
 
-        console.log('Setting cookie...');
         const [cookieHeader] = cookieHeaders;
 
         const [cookie, ...options] = cookieHeader.split(';');

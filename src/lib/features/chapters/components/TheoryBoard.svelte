@@ -1,17 +1,23 @@
-<script>
+<script lang="ts">
     import Button from "../../../common/components/Button.svelte";
     import Title from "../../../common/components/Title.svelte";
+    import type { Chapter } from "../chapters.types";
 
-    const { text = "Default Text", } = $props();
+    const { chapter }: { chapter: Chapter } = $props();
 </script>
 
-<div class="background chapter-container">
-    <Title size='large' color='dark'>Chapter Title</Title>
-    <p>
-        {@html text}
-    </p>
-    <Button>Take the Quiz</Button>
-</div>
+{#if chapter}
+    <div class="background chapter-container">
+        <Title size='large' color='dark'>{chapter.title}</Title>
+        <p>
+            {@html chapter.content}
+        </p>
+        <Button>Take the Quiz</Button>
+    </div>
+{:else}
+    <p>Not Found</p>
+{/if}
+
 
 <style>
     .background {

@@ -8,3 +8,5 @@ export interface ChapterPreview {
     id: string,
     title: string
 }
+
+export type Chapters = readonly ChapterPreview[];

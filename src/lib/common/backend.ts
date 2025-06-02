@@ -20,6 +20,8 @@ class BackendClass implements Backend {
     private _headers: Headers
     private _interceptors: InterceptorFn[];
 
+    private _logTemplate = 'HTTP %s %s';
+
     constructor(event: Event, baseUrl: string) {
         this._fetch = event.fetch;
         this._event = event;
@@ -47,7 +49,10 @@ class BackendClass implements Backend {
             route = '/' + route;
         
         const url = this._baseUrl + route;
+
+        console.log(this._logTemplate + ' started', options.method, url)
         let response = await this._fetch(url, { ...options, headers: this._headers});
+        console.log(this._logTemplate + ' responded %d', options.method, url, response.status)
 
         for (const inteceptor of this._interceptors) {
             inteceptor(response, this._event);

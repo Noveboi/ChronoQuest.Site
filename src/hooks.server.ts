@@ -16,7 +16,6 @@ export const handleFetch: HandleFetch = async ({event, fetch, request}) => {
     const cookie = cookies.get(cookieName);
 
     if (cookie) {
-        console.log('Authenticating request', cookie);
         request.headers.set('Cookie', cookie);
     }
 
