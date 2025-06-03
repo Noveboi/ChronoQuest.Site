@@ -18,15 +18,28 @@
 
 {@render children()}
 
-<div class="arrow-container">
+<div class="left-arrow">
+    <Arrow to= "">
+    </Arrow>
+</div>
+
+<div class="right-arrow">
     <Arrow to= "">
     </Arrow>
 </div>
 
 <style>
-    .arrow-container {
-        display: flex;
-        align-items: start;
-        justify-content: center;
+    .left-arrow {
+        position: absolute;
+        left: 0;
+        top: center;
+        margin-left: 1rem;
+    }
+
+    .right-arrow {
+        position: absolute;
+        right: 0;
+        top: center;
+        margin-right: 1rem;
     }
 </style>
