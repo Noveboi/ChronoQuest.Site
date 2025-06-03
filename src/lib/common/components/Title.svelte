@@ -7,7 +7,6 @@
     color?: 'light' | 'dark'
   }
 
-
   const { children, size = 'normal', color = 'light' }: TitleProps = $props();
 
   let fontSize = $derived.by(() => {
