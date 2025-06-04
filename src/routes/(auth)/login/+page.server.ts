@@ -21,7 +21,6 @@ export const actions: Actions = {
         try {
             await login.post('/login?useCookies=true', { email, password });
         } catch (err) {
-            console.log('Caught error.', err)
             return { errors: ['Wrong username or password.']}
         }
     

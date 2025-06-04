@@ -15,7 +15,7 @@
 </script>
 
 <div class="left-arrow">
-    <ChapterArrow chapter={previousChapter}/>
+    <ChapterArrow point='left' chapter={previousChapter}/>
 </div>
 
 <div class="right-arrow">

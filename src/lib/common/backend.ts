@@ -1,4 +1,6 @@
-import type { RequestEvent } from "@sveltejs/kit";
+import { getRequestEvent } from "$app/server";
+import { cookieName } from "$lib/features/auth/auth.constants";
+import { redirect, type RequestEvent } from "@sveltejs/kit";
 
 type BackendRequestOptions = Omit<RequestInit, 'body' | 'method'>;
 export type InterceptorFn = (response: Response) => void;
@@ -22,14 +24,10 @@ class BackendClass implements Backend {
     constructor(fetch: FetchApi, baseUrl: string, interceptors: InterceptorFn[]) {
         this._fetch = fetch;
         this._baseUrl = baseUrl;
-        this._interceptors = interceptors;
 
+        this._interceptors = interceptors;
         this._headers = new Headers();
         this._headers.append('Content-Type', 'application/json')
-    }
-
-    addServerInterceptor(callback: InterceptorFn): void {
-        this._interceptors.push(callback);
     }
 
     async send(route: string, options: RequestInit): Promise<Response> {
@@ -46,9 +44,9 @@ class BackendClass implements Backend {
         let response = await this._fetch(url, { ...options, headers: this._headers});
         console.log(this._logTemplate + ' responded %d', options.method, url, response.status)
 
-        for (const inteceptor of this._interceptors) {
-            inteceptor(response);
-        }
+        this._interceptors.forEach(interceptor => {
+            interceptor(response);
+        })
 
         return response;
     }
@@ -72,7 +70,14 @@ class BackendClass implements Backend {
             }
         }
 
-        throw new Error(response.statusText);
+        if (response.status === 401 && !route.includes('login')) {
+            console.log('User unauthorized.')
+            const event = getRequestEvent();
+            event.cookies.delete(cookieName, { path: '/' });
+            redirect(307, '/login');
+        } 
+
+        throw new Error('API Error! ' + response.statusText);
     }
 }
  

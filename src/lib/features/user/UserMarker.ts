@@ -12,7 +12,6 @@ class UserMarkerClass implements UserMarker {
     examId: string | null
 
     constructor(marker: UserMarker) {
-        console.log('New marker')
         this.chapterId = marker.chapterId;
         this.questionId = marker.questionId;
         this.examId = marker.examId;

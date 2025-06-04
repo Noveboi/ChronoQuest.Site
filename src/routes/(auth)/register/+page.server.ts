@@ -15,7 +15,6 @@ export const actions: Actions = {
         try {
             await api(fetch).post('/register', { email, password });
         } catch (err) {
-            console.log('Caught error.', err)
             return { errors: ['Could not register account.']}
         }
 
