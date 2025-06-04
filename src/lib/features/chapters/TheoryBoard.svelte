@@ -1,4 +1,5 @@
 <script lang="ts">
+    import Navigate from "$lib/common/components/Navigate.svelte";
     import Button from "../../common/components/Button.svelte";
     import Title from "../../common/components/Title.svelte";
     import type { Chapter } from "./chapters.types";
@@ -12,7 +13,7 @@
         <p>
             {@html chapter.content}
         </p>
-        <Button>Take the Quiz</Button>
+        <Navigate to="/chapters/{chapter.id}/questions">Take the Quiz</Navigate>
     </div>
 {:else}
     <p>Not Found</p>
