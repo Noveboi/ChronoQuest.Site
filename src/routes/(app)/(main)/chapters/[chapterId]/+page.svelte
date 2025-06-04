@@ -1,7 +1,7 @@
 <script lang="ts">
     import TheoryBoard from "$lib/features/chapters/TheoryBoard.svelte";
-    import type { PageProps } from "./$types";
     import { onExit } from "$lib/common/hooks/onExit";
+    import type { PageProps } from "./$types";
 
     let { data }: PageProps = $props();
 
