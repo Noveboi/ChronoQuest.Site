@@ -1,7 +1,7 @@
 <script lang="ts">
     import { SvelteToast } from "@zerodevx/svelte-toast";
     import type { LayoutProps } from "./$types";
-    import './global.css'
+    import '../global.css'
 
     const { children }: LayoutProps = $props();
 </script>

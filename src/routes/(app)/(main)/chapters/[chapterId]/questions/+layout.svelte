@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { QuestionPreview } from '$lib/features/questions/question.types';
-    import QuizQuestList from '$lib/features/quiz/list/QuizQuestList.svelte';
+    import QuizQuestList from '$lib/features/questions/list/QuestList.svelte';
     import type { LayoutProps } from './$types';
 
     const { children, data }: LayoutProps = $props();

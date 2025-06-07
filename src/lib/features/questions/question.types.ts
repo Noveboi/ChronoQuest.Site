@@ -7,3 +7,14 @@ export interface QuestionPreview {
     type: QuestionType,
     status: QuestionStatus
 }
+
+export interface Question {
+    id: string,
+    number: number,
+    description: string
+}
+
+export interface QuestOption {
+    id: string
+    title: string
+}
