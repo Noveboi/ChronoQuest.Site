@@ -5,6 +5,7 @@ import { error, redirect } from '@sveltejs/kit';
 
 export const load: LayoutServerLoad = async ({ fetch, route }) => {
     const chapters = await api(fetch).get<Chapters>('/chapters') as readonly ChapterPreview[];
+    
     if (chapters.length === 0) {
         error(404, 'No chapters found!')
     }

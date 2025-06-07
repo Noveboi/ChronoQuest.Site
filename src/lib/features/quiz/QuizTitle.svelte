@@ -1,5 +1,9 @@
 <script lang="ts">
-    type QuizTitleProps = { text: string }
+    import type { Snippet } from "svelte";
 
-    const { text }: QuizTitleProps = $props();
+    type QuizTitleProps = { 
+        children: Snippet
+     }
+
+    const { children }: QuizTitleProps = $props();
 </script>
