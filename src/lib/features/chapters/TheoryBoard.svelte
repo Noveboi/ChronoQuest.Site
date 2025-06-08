@@ -26,6 +26,7 @@
         width: 60%;
         height: 80%;
         border-radius: 2em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
     .chapter-container {

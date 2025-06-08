@@ -29,17 +29,36 @@
 
 <style lang="scss">
     .question-num {
-        --bg: rgb(20, 244, 0);
-        background-color: var(--bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        border: 0.2rem solid var(--light-green);
+        padding: 1.5rem;
+        border-radius: 10px;
+        height: 1rem;
+        width: 1rem;
+        color: var(--light-green);
+        font-size: 2em;
+        font-weight: bold;
 
         &.skippable {
-            --bg: rgb(20, 200, 0);
+            background-color: white;
+            border-color: var(--dark-green);
+            color: var(--dark-green);
         }
 
         &.correct {
+            background-color: var(--correct);
+            border: none;
+            color: white;
         }
 
         &.wrong {
+            background-color: var(--error);
+            border: none;
+            color: white;
         }
+
     }
 </style>

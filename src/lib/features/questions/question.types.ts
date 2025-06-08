@@ -11,7 +11,8 @@ export interface QuestionPreview {
 export interface Question {
     id: string,
     number: number,
-    description: string
+    description: string,
+    options: readonly QuestOption[]
 }
 
 export interface QuestOption {

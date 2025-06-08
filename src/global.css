@@ -3,11 +3,24 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+* {
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
 }
 
 :root {
     --blue: #2875F9;
     --green: #28D223;
+    --correct: #55e800;
     --error: #f10000;
+    --light-blue: #37BFFF;
+    --light-green: #28FF2F;
+    --dark-green: #04C00B;
+    --extras-orange: #FF4203;
 }

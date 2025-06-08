@@ -24,6 +24,13 @@
 <style>
     .quest-container {
         display: flex;
-        gap: 1em;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        padding: 0.5rem 2.5rem;
+        border-radius: 10px;
+        margin-top: 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 </style>

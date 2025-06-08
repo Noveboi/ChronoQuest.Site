@@ -19,18 +19,20 @@
     }
 </script>
 
-<div class="toolbar">
-    <Button type="button" {style} onClick={logout} showLoadingIndicator={false}>
-        <LogoutIcon />
-    </Button>
-    <Button onClick={goHome} {style} showLoadingIndicator={false}>
-        <HomeIcon />
-    </Button>
-</div>
+<div class="app">
+    <div class="toolbar">
+        <Button type="button" {style} onClick={logout} showLoadingIndicator={false}>
+            <LogoutIcon />
+        </Button>
+        <Button onClick={goHome} {style} showLoadingIndicator={false}>
+            <HomeIcon />
+        </Button>
+    </div>
 
-<main class="content">
-    {@render children()}
-</main>
+    <main class="content">
+        {@render children()}
+    </main>
+</div>
 
 <style lang="scss">
     .content {
@@ -41,9 +43,14 @@
         flex: 1;
     }
     .toolbar {
-        position: absolute;
         display: flex;
         padding: .5em;
         gap: .5em;
+    }
+    .app {
+        display: flex;
+        flex-direction: column;
+        height: 100dvh;
+        overflow-y: hidden
     }
 </style>
