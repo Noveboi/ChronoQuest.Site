@@ -1,5 +1,5 @@
 import { cookieName } from "$lib/features/auth/auth.constants";
-import { redirect, type Handle, type HandleFetch } from "@sveltejs/kit";
+import { error, redirect, type Handle, type HandleFetch } from "@sveltejs/kit";
 
 const unprotectedRoutes = ['login', 'register']
 
@@ -18,5 +18,18 @@ export const handleFetch: HandleFetch = async ({event, fetch, request}) => {
         request.headers.set('Cookie', cookie);
     } 
 
-    return fetch(request);
+    try {
+        const response = await fetch(request);
+        if (!response || response.status === 0) {
+            return error(500, 'The back-end API has not been started...');
+        }
+
+        return response;
+    } catch (err) {
+        if (err instanceof TypeError && err.cause!.code === 'ECONNREFUSED' )  {
+            console.log('Please start the back-end!')
+            return error(500, 'The back-end API has not been started!')
+        }
+        return error(500, 'An unknown error has occured');
+    }
 }
