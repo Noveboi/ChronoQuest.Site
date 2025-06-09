@@ -29,7 +29,7 @@
         overflow-y: hidden;
     }
 
-    .hide-scrollbar::-webkit-scrollbar {
+    .all-centered::-webkit-scrollbar {
         display: none; 
     }
 

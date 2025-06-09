@@ -1,9 +1,7 @@
 <script lang="ts">
-    import type { QuestionPreview } from '$lib/features/questions/question.types';
-    import QuizQuestList from '$lib/features/questions/list/QuestList.svelte';
-    import type { LayoutProps } from './$types';
-    import QuestBoard from '$lib/features/questions/board/QuestBoard.svelte';
-    import QuizTitle from '$lib/features/quiz/QuizTitle.svelte';
+    import type { LayoutProps } from "./$types";
+    import QuestLayout from "$lib/features/questions/layout/QuestLayout.svelte";
+    import type { QuestionPreview } from "$lib/features/questions/question.types";
 
     const { children, data }: LayoutProps = $props();
 
@@ -22,40 +20,4 @@
 
 </script>
 
-<div class="all-container">
-    <div class="board-container">
-        <QuizTitle>
-            {data.chapter.title}
-        </QuizTitle>
-        <QuestBoard {children}/>
-    </div>
-
-    <div class="list-container">
-        <QuizQuestList chapterId={data.chapter.id} quests={tempQuests}/>
-    </div>
-</div>
-
-<style>
-    .all-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 90%;
-        width: 100%;
-        padding-bottom: 1rem;
-    }
-
-    .board-container {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        flex: 1;
-        width: 100%;
-        gap: 1.5rem;
-    }
-
-    .list-container {
-        min-width: 75%;
-    }
-</style>
+<QuestLayout {children} chapter={data.chapter} questions={tempQuests} />
