@@ -7,8 +7,10 @@ export const load: PageServerLoad = async ({params}) => {
         description: params.questionId,
         number: 1,
         options: [
-            {id: '1', title: 'Howdy, partner!'},
-            {id: '2', title: 'Whats cooking!'}
+            {id: '1', title: 'Option 1'},
+            {id: '2', title: 'Option 2'},
+            {id: '3', title: 'Option 3'},
+            {id: '4', title: 'Option 4'}
         ]
     }
 

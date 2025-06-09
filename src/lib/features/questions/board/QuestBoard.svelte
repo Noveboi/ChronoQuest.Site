@@ -15,6 +15,7 @@
         text-align: center;
         background-color: white;
         border-radius: 10px;
+        border: 0.2rem solid var(--light-green);
         width: 60%;
         height: 100%;
         padding: 1em;
