@@ -11,8 +11,6 @@
     const marker = getMarkerContext();
     const startUrl = $derived(marker.url);
     const hasStarted = $derived(marker.hasStarted());
-
-    $inspect(startUrl);
 </script>
 
 <Title size='large'> Welcome! </Title>

@@ -1,6 +1,5 @@
 <script lang="ts">
     import Navigate from "$lib/common/components/Navigate.svelte";
-    import Button from "../../common/components/Button.svelte";
     import Title from "../../common/components/Title.svelte";
     import type { Chapter } from "./chapters.types";
 
@@ -23,8 +22,7 @@
 <style>
     .background {
         background-color: white;
-        width: 60%;
-        height: 80%;
+        padding-bottom: 2rem;
         border-radius: 2em;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
@@ -35,6 +33,7 @@
         align-items: center;
         justify-content: top;
         overflow-y: auto;
+        height: 85dvh;
     }
 
     p {

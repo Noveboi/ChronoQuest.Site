@@ -1,15 +1,15 @@
 <script lang="ts">
     import type { QuestionPreview } from '$lib/features/questions/question.types';
-    import QuizQuestList from '$lib/features/questions/list/QuestList.svelte';
+    import QuestList from '$lib/features/questions/list/QuestList.svelte';
     import QuestBoard from '$lib/features/questions/board/QuestBoard.svelte';
     import QuizTitle from '$lib/features/quiz/QuizTitle.svelte';
     import type { Snippet } from 'svelte';
-    import type { Chapter } from '$lib/features/chapters/chapters.types';
+    import type { ChapterPreview } from '$lib/features/chapters/chapters.types';
 
     type QuestLayoutProps = {
         children: Snippet,
         questions: QuestionPreview[],
-        chapter: Chapter
+        chapter: ChapterPreview
     }
 
     const { children, questions, chapter }: QuestLayoutProps = $props();
@@ -24,7 +24,7 @@
     </div>
 
     <div class="list-container">
-        <QuizQuestList chapterId={chapter.id} quests={questions}/>
+        <QuestList chapterId={chapter.id} quests={questions}/>
     </div>
 </div>
 

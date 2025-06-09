@@ -10,32 +10,28 @@
 
     const nextChapter = $derived(data.next);
     const previousChapter = $derived(data.previous);
-
-    $inspect(nextChapter, previousChapter);
 </script>
 
-<div class="left-arrow">
-    <ChapterArrow point='left' chapter={previousChapter}/>
+<div class="chapter-container">
+    <ChapterArrow point='left' chapter={previousChapter}/>\
+    <div class="content">
+        <TheoryBoard chapter={data.chapter}/>
+    </div>
+    <ChapterArrow point='right' chapter={nextChapter}/>
 </div>
 
-<div class="right-arrow">
-    <ChapterArrow chapter={nextChapter}/>
-</div>
+<style lang="scss">
+    $spacing: 1rem;
 
-<TheoryBoard chapter={data.chapter}/>
-
-<style>
-    .left-arrow {
-        position: absolute;
-        left: 0;
-        top: center;
-        margin-left: 1rem;
+    .chapter-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 #{$spacing};
+        gap: #{$spacing};
     }
 
-    .right-arrow {
-        position: absolute;
-        right: 0;
-        top: center;
-        margin-right: 1rem;
+    .content {
+        flex: 1;
     }
 </style>

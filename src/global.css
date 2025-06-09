@@ -23,4 +23,6 @@ a {
     --light-green: #28FF2F;
     --dark-green: #04C00B;
     --orange: #FF4203;
+    
+    --disabled: #888;
 }

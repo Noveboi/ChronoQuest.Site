@@ -7,9 +7,11 @@
     loading?: boolean,
     showLoadingIndicator?: boolean
     style?: string,
-    children: Snippet };
+    disabled?: boolean
+    children: Snippet 
+  };
 
-  let { onClick, children, style, loading = $bindable(), type = 'button', showLoadingIndicator = true }: ButtonProps = $props();
+  let { onClick, children, style, disabled = false, loading = $bindable(), type = 'button', showLoadingIndicator = true }: ButtonProps = $props();
     
   async function handleClick() {
     if (onClick !== undefined) {
@@ -21,7 +23,7 @@
 
 </script>
 
-<button style={style} type={type} onclick={handleClick}>
+<button {disabled} style={style} type={type} onclick={handleClick}>
   {#if loading}
     <span class="spinner"></span>
   {/if}
@@ -41,7 +43,12 @@
     transition: background-color 0.2s;
   }
 
-  button:hover {
+  button[disabled]{
+    background-color: var(--disabled);
+    cursor: default;
+  }
+
+  button:not([disabled]):hover {
     background-color: #af340b;
   }
 

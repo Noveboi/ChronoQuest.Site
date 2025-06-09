@@ -8,8 +8,12 @@
     }
     
     const { chapter, point = 'right' }: ChapterArrowProps = $props();
+
+    const disabled = $derived(chapter === undefined);
+    const to = $derived(chapter 
+        ? `/chapters/${chapter.id}`
+        : ''
+    );
 </script>
 
-{#if chapter}
-    <Arrow {point} to='/chapters/{chapter.id}'/>
-{/if}
+<Arrow {point} {disabled} {to}/>
