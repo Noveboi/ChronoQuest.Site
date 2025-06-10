@@ -26,7 +26,7 @@
         return str;
     })
 
-    const disabled = $derived(question.answeredOptionId !== undefined);
+    const disabled = $derived(question.answeredOptionId !== undefined && question.answeredOptionId !== null);
 </script>
 
 <button type="button" class="option-style{classes}" {disabled} {onclick}>

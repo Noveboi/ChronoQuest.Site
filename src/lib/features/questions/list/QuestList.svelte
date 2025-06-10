@@ -4,7 +4,7 @@
 
     type QuizTitleProps = { 
         chapterId: string
-        quests: QuestionPreview[] 
+        quests: readonly QuestionPreview[] 
     }
 
     const { quests, chapterId }: QuizTitleProps = $props();

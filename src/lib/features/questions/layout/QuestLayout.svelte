@@ -5,14 +5,16 @@
     import QuizTitle from '$lib/features/quiz/QuizTitle.svelte';
     import type { Snippet } from 'svelte';
     import type { ChapterPreview } from '$lib/features/chapters/chapters.types';
+    import FinishedQuestionsModal from '../FinishedQuestionsModal.svelte';
 
     type QuestLayoutProps = {
         children: Snippet,
-        questions: QuestionPreview[],
-        chapter: ChapterPreview
+        questions: readonly QuestionPreview[],
+        chapter: ChapterPreview,
     }
 
     const { children, questions, chapter }: QuestLayoutProps = $props();
+
 </script>
 
 <div class="all-container">
