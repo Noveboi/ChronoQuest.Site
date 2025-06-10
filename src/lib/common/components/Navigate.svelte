@@ -8,10 +8,11 @@
         children: Snippet, 
         style?: string,
         onNavigate?: () => Promise<void>,
-        disabled?: boolean
+        disabled?: boolean,
+        preload?: boolean
     }
 
-    const { to, children, style, onNavigate, disabled = false }: NavigateProps = $props();
+    const { to, children, style, onNavigate, disabled = false, preload = true }: NavigateProps = $props();
 
     async function onClick() {
         if (!onNavigate)
@@ -22,10 +23,10 @@
 
     const href = $derived(to == '' ? null : to);
     const classes = $derived(disabled ? ' disabled' : '');
-    
+    const preloadData = $derived(preload ? 'hover' : 'off');
 </script>
 
-<a {href} onclick={onClick} class="navigate{classes}" aria-disabled="{disabled}">
+<a data-sveltekit-preload-data={preloadData} {href} onclick={onClick} class="navigate{classes}" aria-disabled="{disabled}">
     <Button {disabled} {style} {children} showLoadingIndicator={false} />
 </a>
 

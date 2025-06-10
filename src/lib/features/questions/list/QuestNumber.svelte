@@ -21,7 +21,7 @@
     })
 </script>
 
-<a href="/chapters/{chapterId}/questions/{questionId}">
+<a data-sveltekit-preload-data="off" href="/chapters/{chapterId}/questions/{questionId}">
     <div class="question-num {typeClass} {statusClass}">
         {number}
     </div>

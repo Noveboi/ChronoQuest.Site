@@ -26,3 +26,9 @@ a {
     
     --disabled: #888;
 }
+
+.chart {
+    background: rgba(0, 0, 0, 0.75);
+    max-width: 75dvw;
+    max-height: 75dvh;
+}

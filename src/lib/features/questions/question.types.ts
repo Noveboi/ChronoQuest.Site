@@ -13,12 +13,18 @@ export interface Question {
     number: number
     content: string
     type: QuestionType
+    topic: Topic
     options: readonly QuestOptionType[]
     answeredOptionId?: string,
-    correctOptionId?: 
+    correctOptionId?: string
 }
 
 export interface QuestOptionType {
     id: string
     title: string
+}
+
+export interface Topic {
+    id: string
+    name: string
 }

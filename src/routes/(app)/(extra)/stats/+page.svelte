@@ -1,5 +1,8 @@
 <script lang="ts">
+    import MasteryCharts from "$lib/features/stats/mastery/MasteryCharts.svelte";
+    import type { PageProps } from "./$types";
 
+    const { data }: PageProps = $props(); 
 </script>
 
-<h1> Stats Page, hooray! 🥳🥳🥳🥳</h1>
+<MasteryCharts masteries={data.masteries} />
