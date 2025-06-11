@@ -51,6 +51,6 @@
         display: flex;
         flex-direction: column;
         height: 100dvh;
-        overflow-y: hidden
+        overflow-y: auto;
     }
 </style>
