@@ -1,5 +1,5 @@
 <script lang="ts">
-    import TheoryBoard from "$lib/features/chapters/TheoryBoard.svelte";
+    import ChapterReader from "$lib/features/chapters/ChapterReader.svelte";
     import { onExit } from "$lib/common/hooks/onExit";
     import type { PageProps } from "./$types";
     import ChapterArrow from "$lib/features/chapters/ChapterArrow.svelte";
@@ -15,7 +15,7 @@
 <div class="chapter-container">
     <ChapterArrow point='left' chapter={previousChapter}/>\
     <div class="content">
-        <TheoryBoard chapter={data.chapter}/>
+        <ChapterReader chapter={data.chapter}/>
     </div>
     <ChapterArrow point='right' chapter={nextChapter}/>
 </div>

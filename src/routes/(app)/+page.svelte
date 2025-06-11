@@ -13,14 +13,24 @@
     const hasStarted = $derived(marker.hasStarted());
 </script>
 
-<Title size='large'> Welcome! </Title>
+<div id="app-home">
+    <Title size='large'> Welcome! </Title>
 
-<div class="button-container">
-    <Navigate to={startUrl}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
-    <Navigate to='/stats'>Statistics</Navigate>
+    <div class="button-container">
+        <Navigate to={startUrl}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
+        <Navigate to='/stats'>Statistics</Navigate>
+    </div>
 </div>
 
 <style lang="scss">
+    #app-home {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
     .button-container {
         min-width: 16em;
         display: flex;

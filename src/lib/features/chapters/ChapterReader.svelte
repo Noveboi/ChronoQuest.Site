@@ -7,33 +7,30 @@
 </script>
 
 {#if chapter}
-    <div class="background chapter-container">
-        <Title size='large' color='dark'>{chapter.title}</Title>
+    <section>
+        <Title size='large' color='dark'>{chapter.order}. {chapter.title}</Title>
         <p>
             {@html chapter.content}
         </p>
         <Navigate to="/chapters/{chapter.id}/questions">Take the Quiz</Navigate>
-    </div>
+    </section>
 {:else}
     <p>Not Found</p>
 {/if}
 
 
 <style>
-    .background {
-        background-color: white;
-        padding-bottom: 2rem;
-        border-radius: 2em;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-    }
-
-    .chapter-container {
+    section {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: top;
         overflow-y: auto;
         height: 85dvh;
+        background-color: white;
+        padding-bottom: 2rem;
+        border-radius: 2em;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
     p {

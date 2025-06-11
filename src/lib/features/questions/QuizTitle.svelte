@@ -1,6 +1,5 @@
 <script lang="ts">
     import type { Snippet } from "svelte";
-    import { render } from "svelte/server";
 
     type QuizTitleProps = { 
         children: Snippet

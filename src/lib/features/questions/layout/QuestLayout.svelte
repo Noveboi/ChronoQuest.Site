@@ -2,7 +2,7 @@
     import type { QuestionPreview } from '$lib/features/questions/question.types';
     import QuestList from '$lib/features/questions/list/QuestList.svelte';
     import QuestBoard from '$lib/features/questions/board/QuestBoard.svelte';
-    import QuizTitle from '$lib/features/quiz/QuizTitle.svelte';
+    import QuizTitle from '$lib/features/questions/QuizTitle.svelte';
     import type { Snippet } from 'svelte';
     import type { ChapterPreview } from '$lib/features/chapters/chapters.types';
     import FinishedQuestionsModal from '../FinishedQuestionsModal.svelte';
