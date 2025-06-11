@@ -8,7 +8,7 @@ export async function POST({fetch, params, request}) {
         throw new Error('Expected string property `optionId`')
     }
 
-    return await api(fetch).send(`/questions/${params.questionId}/answer/${optionId}`, {
+    return await api(fetch).send(`/chapters/${params.chapterId}/questions/${params.questionId}/answer/${optionId}`, {
         method: 'GET',
     })
 }
