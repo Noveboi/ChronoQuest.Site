@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import Modal from "$lib/common/components/modal/Modal.svelte";
-    import type { ModalActions } from "$lib/common/components/modal/modal.utils";
+    import { ModalActions } from "$lib/common/components/modal/modal.utils";
     import type { Chapter, ChapterPreview } from "../chapters/chapters.types";
 
     type FinishedQuestionsModalProps = {
@@ -10,16 +10,10 @@
     }
 
     const { show, nextChapter }: FinishedQuestionsModalProps = $props();
-    const actions: ModalActions = {
-        'Yes': async () => {
-            if (nextChapter) {
-                await goto(`/chapters/${nextChapter.id}`);
-            } else {
-                await goto('/');
-            }
-        } ,
-        'Go Home': () => goto('/')
-    }
+    const actions = $derived(new ModalActions()
+        .add('Yes', () => goto(`/chapters/${nextChapter!.id}`), nextChapter !== undefined)
+        .add('Go Home', () => goto('/'))
+        .add('Close', ctx => ctx.close()))
 
     const prompt = $derived(nextChapter 
         ? 'Would you like to move on to the next chapter?'
@@ -29,10 +23,6 @@
 </script>
 
     <Modal {actions} {show}>
-        <p>
-            You have finished all the chapter's questions.
-        </p>
-        <p>
-            {prompt}
-        </p>
+        <h2>You've finished the chapter's questions!</h2>
+        <p>{prompt}</p>
     </Modal>

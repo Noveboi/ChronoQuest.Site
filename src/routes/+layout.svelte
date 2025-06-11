@@ -2,11 +2,15 @@
     import { SvelteToast } from "@zerodevx/svelte-toast";
     import type { LayoutProps } from "./$types";
     import '../global.css'
+    import { setBackgroundState } from "$lib/features/ui/backgroundState.svelte";
 
     const { children }: LayoutProps = $props();
+    
+    const bg = setBackgroundState();
+    const style = $derived(`background: radial-gradient(ellipse at bottom right, ${bg.startColorCss}, ${bg.endColorCss}`);
 </script>
 
-<div class="gradient-background"></div>
+<div class="gradient-background" {style}></div>
 <div class="app-root">
     {@render children()}
 </div>
@@ -15,7 +19,6 @@
 
 <style lang="scss">
     .gradient-background{
-        background: radial-gradient(ellipse at bottom right, var(--green), var(--blue));
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

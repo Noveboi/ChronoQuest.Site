@@ -40,7 +40,7 @@
 <style>
     canvas {
         background: rgba(0, 0, 0, 0.75);
-        max-width: 75dvw;
-        max-height: 75dvh;
+        max-height: 75vh;
+        max-width: 90vw;
     }
 </style>

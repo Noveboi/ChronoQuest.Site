@@ -17,7 +17,8 @@
     <Title size='large'> Welcome! </Title>
 
     <div class="button-container">
-        <Navigate to={startUrl}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
+        <Navigate to={startUrl} preload={false}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
+        <Navigate to='/chapters'>Chapters</Navigate>
         <Navigate to='/stats'>Statistics</Navigate>
     </div>
 </div>

@@ -16,7 +16,7 @@
 
     const makeAction = (action: string) => {
         return () => {
-            const func = actions[action];
+            const func = actions.get(action);
             func(context);
             return Promise.resolve();
         }
@@ -30,7 +30,7 @@
                 {@render children()}
             </div>
             <div class="modal-actions">
-                {#each Object.keys(actions) as action}
+                {#each actions.getNames() as action}
                     <Button onClick={makeAction(action)} showLoadingIndicator={false}>{action}</Button>
                 {/each}
             </div>
@@ -49,8 +49,8 @@
 
         > .modal {
             position: relative;
-            background-color: aquamarine;
-            width: 33.333dvw;
+            background-color: var(--light-blue);
+            max-width: 50%;
             min-height: 200px;
             display: flex;
             flex-direction: column;

@@ -22,6 +22,10 @@
         display: flex;
         gap: 1rem;
         width: 100%;
+        align-items: baseline;
+        justify-content: flex-start;
+
+        padding: 1rem;
 
         > .mastery-chart {
             flex: 1;
