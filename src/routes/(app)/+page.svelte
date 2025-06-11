@@ -14,7 +14,6 @@
 </script>
 
 <Title size='large'> Welcome! </Title>
-<p>MARKER: {marker ? JSON.stringify(marker) : 'null'}</p>
 
 <div class="button-container">
     <Navigate to={startUrl}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
