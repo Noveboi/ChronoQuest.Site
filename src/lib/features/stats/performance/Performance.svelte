@@ -21,12 +21,17 @@
 <style>
     .performance-list {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: flex-start;
+        gap: 1rem;
+        margin-top: 1rem;
+        margin-left: 1rem;
     }
 
     .performance {
         padding: 1rem;
-        border: 1px solid black;
+        border: 5px solid var(--light-green);
+        background-color: white;
+        border-radius: 10px;
     }
 </style>
