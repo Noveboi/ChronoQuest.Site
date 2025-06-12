@@ -20,6 +20,8 @@
         <Navigate to={startUrl} preload={false}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
         <Navigate to='/chapters'>Chapters</Navigate>
         <Navigate to='/stats'>Statistics</Navigate>
+
+        <Navigate to='/exam'>(TEMP) Exam</Navigate>
     </div>
 </div>
 
