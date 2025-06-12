@@ -4,6 +4,8 @@ export interface UserMarker {
     chapterId: string | null
     questionId:  string | null
     examId: string | null
+
+    hasStarted: () => boolean,
 }
 
 class UserMarkerClass implements UserMarker {
