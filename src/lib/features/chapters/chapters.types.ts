@@ -7,6 +7,12 @@ export interface Chapter {
     order: number
 } 
 
+export interface SlimChapter {
+    id: string
+    title: string
+    topic: string
+}
+
 export interface ChapterPreview {
     id: string,
     title: string,

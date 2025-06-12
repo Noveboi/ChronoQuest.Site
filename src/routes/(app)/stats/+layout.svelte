@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Chart, LineController, LinearScale, PointElement, LineElement, Title, CategoryScale } from "chart.js";
+    import { Chart, LineController, LinearScale, PointElement, LineElement, Title, CategoryScale, BarController, BarElement, PieController, ArcElement, Legend, Tooltip } from "chart.js";
     import type { LayoutProps } from "./$types";
     import autocolorPlugin from "chartjs-plugin-autocolors";
     import Navigate from "$lib/common/components/Navigate.svelte";
@@ -7,12 +7,18 @@
     const { children }: LayoutProps = $props();
 
     Chart.register(
+        BarController,
+        PieController,
         LineController, 
         CategoryScale,
         LinearScale,
         PointElement,
+        ArcElement,
+        BarElement,
         LineElement,
         Title,
+        Legend,
+        Tooltip,
         autocolorPlugin);
 
     Chart.defaults.color = '#e0e0e0';

@@ -15,11 +15,18 @@
         new Chart(chartCanvas, {
             type: props.type,
             data: {
+                labels: props.labels,
                 xLabels: props.xLabels ?? Array.from({ length: getMaxLength() }, (_, i) => i + 1),
-                datasets: props.datasets,
+                datasets: props.datasets.map(set => ({
+                    data: set.data,
+                    backgroundColor: set.colorPalette
+                }))
             },
             options: {
                 plugins: {
+                    legend: {
+                        display: props.showLegend
+                    },
                     title: {
                         text: props.title,
                         display: props.title !== undefined
@@ -42,9 +49,14 @@
     })
 </script>
 
-<canvas bind:this={chartCanvas}></canvas>
+<div class="chart-parent">
+    <canvas bind:this={chartCanvas}></canvas>
+</div>
 
 <style>
+    .chart-parent {
+        position: relative;
+    }
     canvas {
         background: rgba(0, 0, 0, 0.75);
         max-height: 75vh;
