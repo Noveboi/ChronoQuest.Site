@@ -30,16 +30,17 @@
         all: unset;
         cursor: pointer;
 
-        --border: 1px solid black;
-        --padding: .5rem;
+        --border: 5px solid var(--light-green);
+        --padding: 0.5rem;
     }
 
     .card {
-        max-width: 260px;
-        min-height: 300px;
+        min-width: 250px;
+        min-height: 350px;
         display: flex;
         flex-direction: column;
-        
+        background-color: white;
+        border-radius: 10px;
         border: var(--border);
 
         .card-body {
@@ -56,7 +57,7 @@
         }
 
         .card-footer {
-            flex: .2;
+            flex: 0.2;
             display: flex;
             flex-direction: column;
         }
