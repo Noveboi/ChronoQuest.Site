@@ -18,11 +18,27 @@
 
     const questionState = setQuestionStateContext();
     const chapterState = getChapterState();
+    let hasFinishedChapters = $state(false);
 
     questionState.questions = data.questions;
+
+    $effect(() => {
+        if (questionState.hasFinishedQuestions) {
+            fetch('/progress/chapters')
+                .then(res => res.json())
+                .then(x => {
+                    if ('status' in x && x.status === 'completed') {
+                        hasFinishedChapters = true;
+                    }
+                })
+        }
+    })
 </script>
 
-<FinishedQuestionsModal show={questionState.hasFinishedQuestions} nextChapter={chapterState.nextChapter}/>
+<FinishedQuestionsModal 
+    show={questionState.hasFinishedQuestions} 
+    nextChapter={chapterState.nextChapter}
+    {hasFinishedChapters}/>
 
 <QuestLayout {chapter} questions={questionState.questions}>
     {@render children()}

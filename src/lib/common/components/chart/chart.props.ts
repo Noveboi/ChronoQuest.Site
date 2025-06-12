@@ -4,6 +4,7 @@ export type ChartProps = {
     title?: string
     xLabels?: any[]
     xAxis?: AxisOptions
+    yAxis?: AxisOptions
 }
 
 export type ChartDatasets = {
@@ -11,5 +12,7 @@ export type ChartDatasets = {
 }[];
 
 type AxisOptions = {
-    display: boolean
+    display?: boolean,
+    min?: number,
+    max?: number
 }

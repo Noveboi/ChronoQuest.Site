@@ -35,6 +35,7 @@ class BackendClass implements Backend {
             route = '/' + route;
         
         const url = this._baseUrl + route;
+        options = options ?? { method: 'GET' }
 
         if (options.method === 'GET') {
             this._headers.delete('Content-Type');
@@ -45,7 +46,7 @@ class BackendClass implements Backend {
         console.log(this._logTemplate + ' responded %d', options.method, url, response.status)
 
         this._interceptors.forEach(interceptor => {
-            interceptor(response);
+            interceptor?.(response);
         })
 
         return response;

@@ -27,7 +27,14 @@
                 },
                 scales: {
                     x: {
-                        display: props.xAxis?.display ?? true
+                        display: props.xAxis?.display ?? true,
+                        min: props.xAxis?.min,
+                        max: props.xAxis?.max
+                    },
+                    y: {
+                        display: props.yAxis?.display ?? true,
+                        min: props.yAxis?.min,
+                        max: props.yAxis?.max
                     }
                 }
             }

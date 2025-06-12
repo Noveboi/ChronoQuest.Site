@@ -1,8 +1,9 @@
 <script lang="ts">
-    import ChapterReader from "$lib/features/chapters/ChapterReader.svelte";
+    import Reader from "$lib/features/reading/Reader.svelte";
     import { onExit } from "$lib/common/hooks/onExit";
     import type { PageProps } from "./$types";
     import ChapterArrow from "$lib/features/chapters/ChapterArrow.svelte";
+    import ChapterReader from "$lib/features/chapters/ChapterReader.svelte";
 
     let { data }: PageProps = $props();
 

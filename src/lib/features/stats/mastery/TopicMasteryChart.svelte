@@ -15,4 +15,4 @@
 
 </script>
 
-<ChronoChart {datasets} {title} type='line' xAxis={{display: false}}/>
+<ChronoChart {datasets} {title} type='line' xAxis={{display: false}} yAxis={{min: 0, max: 1.02}}/>

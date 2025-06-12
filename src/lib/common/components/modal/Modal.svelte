@@ -50,7 +50,7 @@
         > .modal {
             position: relative;
             background-color: var(--light-blue);
-            max-width: 50%;
+            max-width: 66.7%;
             min-height: 200px;
             display: flex;
             flex-direction: column;
