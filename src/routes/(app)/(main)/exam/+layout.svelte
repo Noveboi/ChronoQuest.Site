@@ -2,7 +2,10 @@
     import { getBackgroundState } from "$lib/features/ui/backgroundState.svelte";
     import { onDestroy } from "svelte";
     import type { LayoutProps } from "./$types";
-    import humanizeDuration from "humanize-duration";
+    import type { LinkSelector } from "$lib/features/questions/question.props";
+    import type { QuestionPreview } from "$lib/features/questions/question.types";
+    import QuestLayout from "$lib/features/questions/layout/QuestLayout.svelte";
+    import { setQuestionStateContext } from "$lib/features/questions/questionState.svelte";
 
     const { data, children }: LayoutProps = $props();
     const bg = getBackgroundState();
@@ -11,9 +14,12 @@
     bg.endColor = 'orange';
 
     onDestroy(() => bg.reset());
+
+    const questionState = setQuestionStateContext();
+    const examLinkSelector: LinkSelector = (question: QuestionPreview) => 
+        `/exam/questions/${question.id}`; 
 </script>
 
-<!-- You can remove this! -->
-Time Limit: {humanizeDuration(data.exam.timeLimitInSeconds * 1000)}
-
-{@render children()}
+<QuestLayout linkSelector={examLinkSelector} questions={data.exam.questions} title={'Exam'}>
+    {@render children()}
+</QuestLayout>

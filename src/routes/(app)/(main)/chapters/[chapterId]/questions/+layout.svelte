@@ -4,6 +4,8 @@
     import { setQuestionStateContext } from "$lib/features/questions/questionState.svelte";
     import { getChapterState } from "$lib/features/chapters/chapterState.svelte";
     import FinishedQuestionsModal from "$lib/features/questions/FinishedQuestionsModal.svelte";
+    import type { LinkSelector } from "$lib/features/questions/question.props";
+    import type { QuestionPreview } from "$lib/features/questions/question.types";
 
     const { children, data }: LayoutProps = $props();
 
@@ -33,6 +35,10 @@
                 })
         }
     })
+
+    const chapterLinkSelector: LinkSelector = (question: QuestionPreview) => 
+        `/chapters/${chapter.id}/questions/${question.id}`;
+
 </script>
 
 <FinishedQuestionsModal 
@@ -40,6 +46,6 @@
     nextChapter={chapterState.nextChapter}
     {hasFinishedChapters}/>
 
-<QuestLayout {chapter} questions={questionState.questions}>
+<QuestLayout title={chapter.title} questions={questionState.questions} linkSelector={chapterLinkSelector}>
     {@render children()}
 </QuestLayout>

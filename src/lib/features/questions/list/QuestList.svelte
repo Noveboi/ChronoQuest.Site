@@ -1,23 +1,23 @@
 <script lang="ts">
     import type { QuestionPreview } from "$lib/features/questions/question.types";
+    import type { LinkSelector } from "../question.props";
     import QuestNumber from "./QuestNumber.svelte";
 
     type QuizTitleProps = { 
-        chapterId: string
-        quests: readonly QuestionPreview[] 
+        quests: readonly QuestionPreview[],
+        linkSelector: LinkSelector
     }
 
-    const { quests, chapterId }: QuizTitleProps = $props();
+    const { quests, linkSelector }: QuizTitleProps = $props();
 </script>
 
 <div class="quest-container">
-    {#each quests as quest}
+    {#each quests as quest, index}
         <QuestNumber 
-            number={quest.number} 
+            number={index + 1} 
             status={quest.status} 
             type={quest.type}
-            chapterId={chapterId}
-            questionId={quest.id}/>
+            link={linkSelector(quest)}/>
     {/each}
 </div>
 

@@ -1,10 +1,11 @@
 <script lang="ts">
+    import type { AnswerCallback } from "../question.props";
     import type { Question, QuestOptionType } from "../question.types";
 
     type OptionProps = {
         question: Question,
         option: QuestOptionType,
-        onAnswer: (option: QuestOptionType) => Promise<void>
+        onAnswer: AnswerCallback
     }
 
     const { question, option, onAnswer }: OptionProps = $props();

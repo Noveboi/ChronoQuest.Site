@@ -5,11 +5,10 @@
         number: number,
         type: QuestionType,
         status: QuestionStatus,
-        questionId: string,
-        chapterId: string,
+        link: string
     }
 
-    const { number, type, status, questionId, chapterId }: QuestNumberProps = $props();
+    const { number, type, status, link }: QuestNumberProps = $props();
 
     const typeClass = $derived(type === 'skippable' ? 'skippable' : '');
     const statusClass = $derived.by(() => {
@@ -18,10 +17,11 @@
             case "wrong": return 'wrong';
             default: return ''
         }
-    })
+    });
+
 </script>
 
-<a data-sveltekit-preload-data="off" href="/chapters/{chapterId}/questions/{questionId}">
+<a data-sveltekit-preload-data="off" href={link}>
     <div class="question-num {typeClass} {statusClass}">
         {number}
     </div>

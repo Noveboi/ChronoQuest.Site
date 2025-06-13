@@ -4,29 +4,29 @@
     import QuestBoard from '$lib/features/questions/board/QuestBoard.svelte';
     import QuizTitle from '$lib/features/questions/QuizTitle.svelte';
     import type { Snippet } from 'svelte';
-    import type { ChapterPreview } from '$lib/features/chapters/chapters.types';
-    import FinishedQuestionsModal from '../FinishedQuestionsModal.svelte';
+    import type { LinkSelector } from '../question.props';
 
     type QuestLayoutProps = {
         children: Snippet,
         questions: readonly QuestionPreview[],
-        chapter: ChapterPreview,
+        title: string,
+        linkSelector: LinkSelector
     }
 
-    const { children, questions, chapter }: QuestLayoutProps = $props();
+    const { children, questions, title, linkSelector }: QuestLayoutProps = $props();
 
 </script>
 
 <div class="all-container">
     <div class="board-container">
         <QuizTitle>
-            {chapter.title}
+            {title}
         </QuizTitle>
         <QuestBoard {children}/>
     </div>
 
     <div class="list-container">
-        <QuestList chapterId={chapter.id} quests={questions}/>
+        <QuestList {linkSelector} quests={questions}/>
     </div>
 </div>
 
