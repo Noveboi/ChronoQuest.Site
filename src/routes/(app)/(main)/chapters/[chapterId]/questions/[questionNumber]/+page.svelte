@@ -1,7 +1,7 @@
 <script lang="ts">
     import QuestionDisplay from "$lib/features/questions/board/QuestionDisplay.svelte";
     import type { AnswerQuestionRequest, Question, QuestOptionType } from "$lib/features/questions/question.types";
-    import { getQuestionStateContext as getQuestionState } from "$lib/features/questions/questionState.svelte";
+    import { getQuestionState as getQuestionState } from "$lib/features/questions/questionState.svelte";
     import type { PageProps } from "./$types";
 
     const { data }: PageProps = $props();

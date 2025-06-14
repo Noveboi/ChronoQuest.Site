@@ -7,7 +7,7 @@
 </script>
 
 {#snippet takeExam()}
-    <Navigate to='/exam'>Take Exam</Navigate>
+    <Navigate to='/exam' preload={false}>Take Exam</Navigate>
 {/snippet}
 
 <Reader content={review.content} title='Review' footer={takeExam}/>

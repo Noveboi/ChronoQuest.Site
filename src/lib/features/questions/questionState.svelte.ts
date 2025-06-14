@@ -19,7 +19,7 @@ class QuestionState {
         
         const questFromList = this.questions.find(x => x.id === question.id);
         if (!questFromList) {
-            throw new Error('Could not find question from list to refresh');
+            throw new Error(`Could not find question from list to refresh (ID: ${question.id})`);
         }
 
         questFromList.status = question.answeredOptionId === question.correctOptionId
@@ -32,10 +32,11 @@ class QuestionState {
 
 const KEY = '$QuestionState';
 
-export const getQuestionStateContext = () => {
+export const getQuestionState = () => {
     return getContext<QuestionState>(KEY);
 }
 
-export const setQuestionStateContext = () => {
-    return setContext<QuestionState>(KEY, new QuestionState([]))
+export const setQuestionState = (questions: readonly QuestionPreview[]) => {
+    const state = new QuestionState(questions);
+    return setContext<QuestionState>(KEY, state)
 }

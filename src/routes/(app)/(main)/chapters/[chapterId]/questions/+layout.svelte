@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { LayoutProps } from "./$types";
     import QuestLayout from "$lib/features/questions/layout/QuestLayout.svelte";
-    import { setQuestionStateContext } from "$lib/features/questions/questionState.svelte";
+    import { setQuestionState } from "$lib/features/questions/questionState.svelte";
     import { getChapterState } from "$lib/features/chapters/chapterState.svelte";
     import FinishedQuestionsModal from "$lib/features/questions/FinishedQuestionsModal.svelte";
     import type { LinkSelector } from "$lib/features/questions/question.props";
@@ -18,11 +18,9 @@
         return chapter;
     });
 
-    const questionState = setQuestionStateContext();
+    const questionState = setQuestionState(data.questions);
     const chapterState = getChapterState();
     let hasFinishedChapters = $state(false);
-
-    questionState.questions = data.questions;
 
     $effect(() => {
         if (questionState.hasFinishedQuestions) {

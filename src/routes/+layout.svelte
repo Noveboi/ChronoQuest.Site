@@ -8,7 +8,11 @@
     
     const bg = setBackgroundState();
     const style = $derived(`background: radial-gradient(ellipse at bottom right, ${bg.startColorCss}, ${bg.endColorCss}`);
+
+    const unload = () => { fetch('/exit', {method: 'POST'})};
 </script>
+
+<svelte:window onbeforeunload={unload} />
 
 <div class="gradient-background" {style}></div>
 <div class="app-root">

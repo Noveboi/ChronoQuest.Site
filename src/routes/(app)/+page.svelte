@@ -10,18 +10,23 @@
 
     const marker = getMarkerContext();
     const startUrl = $derived(marker.url);
-    const hasStarted = $derived(marker.hasStarted());
+
+    const mainText = marker.hasStarted() 
+        ? marker.examId 
+            ? 'Exam'
+            : 'Continue'
+        : 'Begin';
 </script>
 
 <div id="app-home">
     <Title size='large'> Welcome! </Title>
 
     <div class="button-container">
-        <Navigate to={startUrl} preload={false}>{hasStarted ? 'Continue' : 'Start'}</Navigate>
-        <Navigate to='/chapters'>Chapters</Navigate>
+        <Navigate to={startUrl} preload={false}>{mainText}</Navigate>
+        {#if !marker.examId}
+            <Navigate to='/chapters'>Chapters</Navigate>
+        {/if}
         <Navigate to='/stats'>Statistics</Navigate>
-
-        <Navigate to='/exam'>(TEMP) Exam</Navigate>
     </div>
 </div>
 

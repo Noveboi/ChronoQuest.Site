@@ -2,11 +2,11 @@
     import QuestionDisplay from "$lib/features/questions/board/QuestionDisplay.svelte";
     import type { AnswerCallback } from "$lib/features/questions/question.props";
     import type { AnswerQuestionRequest, Question, QuestOptionType } from "$lib/features/questions/question.types";
-    import { getQuestionStateContext } from "$lib/features/questions/questionState.svelte";
+    import { getQuestionState } from "$lib/features/questions/questionState.svelte";
     import type { PageProps } from "./$types";
 
     const { data }: PageProps = $props();
-    const questionState = getQuestionStateContext();
+    const questionState = getQuestionState();
     $effect(() => {
         questionState.selectedQuestion = data.question;
     });
