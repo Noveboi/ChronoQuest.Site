@@ -1,9 +1,8 @@
 <script lang="ts">
     import QuestionDisplay from "$lib/features/questions/board/QuestionDisplay.svelte";
-    import type { Question, QuestOptionType } from "$lib/features/questions/question.types";
+    import type { AnswerQuestionRequest, Question, QuestOptionType } from "$lib/features/questions/question.types";
     import { getQuestionStateContext as getQuestionState } from "$lib/features/questions/questionState.svelte";
     import type { PageProps } from "./$types";
-    import type { AnswerQuestionRequest } from "./types";
 
     const { data }: PageProps = $props();
 
@@ -15,7 +14,7 @@
     const question = $derived(questionState.selectedQuestion);
 
     const onAnswer = async (option: QuestOptionType) => {
-        const request: AnswerQuestionRequest = { optionId: option.id }; 
+        const request: AnswerQuestionRequest = { optionId: option.id, questionId: question?.id ?? '' }; 
         const response = await fetch(`/chapters/${data.chapterId}/questions/${data.question.id}`, { 
             method: 'POST',
             body: JSON.stringify(request)
@@ -28,4 +27,4 @@
     }
 </script>
 
-<QuestionDisplay {onAnswer} {question}/>
+<QuestionDisplay {onAnswer} {question} number={data.number}/>

@@ -16,8 +16,8 @@
     onDestroy(() => bg.reset());
 
     const questionState = setQuestionStateContext();
-    const examLinkSelector: LinkSelector = (question: QuestionPreview) => 
-        `/exam/questions/${question.id}`; 
+    const examLinkSelector: LinkSelector = (number: number) => 
+        `/exam/questions/${number}`; 
 </script>
 
 <QuestLayout linkSelector={examLinkSelector} questions={data.exam.questions} title={'Exam'}>

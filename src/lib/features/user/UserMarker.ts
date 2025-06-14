@@ -24,7 +24,12 @@ class UserMarkerClass implements UserMarker {
 
     get url(): string {
         if (this.examId) {
-            return '/exam';
+            const url = '/exam';
+            if (this.questionId) {
+                return `${url}/questions/${this.questionId}`
+            }
+
+            return url;
         }
 
         if (this.reviewId) {

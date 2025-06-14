@@ -5,15 +5,16 @@
 
     type QuestionComponentProps = {
         question: Question | undefined,
+        number: number,
         onAnswer: AnswerCallback
     }
 
-    const { question, onAnswer }: QuestionComponentProps = $props();
+    const { question, onAnswer, number }: QuestionComponentProps = $props();
 </script>
 
 {#if question}
     <div class="all-centered">
-        <h2>Question {question.number}</h2>
+        <h2>Question {number}</h2>
         <p>{question.content}</p>
         <div class="option-container">
             {#each question.options as option}

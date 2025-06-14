@@ -3,14 +3,12 @@ export type QuestionStatus = 'unanswered' | 'correct' | 'wrong';
 
 export interface QuestionPreview {
     id: string
-    number: number
     type: QuestionType
     status: QuestionStatus
 }
 
 export interface Question {
     id: string
-    number: number
     content: string
     type: QuestionType
     topic: Topic
@@ -27,4 +25,13 @@ export interface QuestOptionType {
 export interface Topic {
     id: string
     name: string
+}
+
+export type AnswerQuestionRequest = {
+    questionId: string
+    optionId: string
+}
+
+export type AnswerQuestionResponse = {
+    isCorrect: boolean;
 }

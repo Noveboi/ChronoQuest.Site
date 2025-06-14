@@ -1,9 +1,8 @@
 <script lang="ts">
     import QuestionDisplay from "$lib/features/questions/board/QuestionDisplay.svelte";
     import type { AnswerCallback } from "$lib/features/questions/question.props";
-    import type { Question, QuestOptionType } from "$lib/features/questions/question.types";
+    import type { AnswerQuestionRequest, Question, QuestOptionType } from "$lib/features/questions/question.types";
     import { getQuestionStateContext } from "$lib/features/questions/questionState.svelte";
-    import type { AnswerQuestionRequest } from "../../../chapters/[chapterId]/questions/[questionId]/types";
     import type { PageProps } from "./$types";
 
     const { data }: PageProps = $props();
@@ -15,8 +14,8 @@
     const question = $derived(questionState.selectedQuestion);
 
     const onAnswer: AnswerCallback = async (option: QuestOptionType) => {
-        const request: AnswerQuestionRequest = { optionId: option.id }; 
-        const response = await fetch(`/exam/questions/${data.question.id}`, { 
+        const request: AnswerQuestionRequest = { optionId: option.id, questionId: question?.id ?? '' }; 
+        const response = await fetch(`/exam/${data.exam.id}`, { 
             method: 'POST',
             body: JSON.stringify(request)
         });
@@ -28,4 +27,4 @@
     }
 </script>
 
-<QuestionDisplay {question} {onAnswer} />
+<QuestionDisplay {question} {onAnswer} number={data.number} />

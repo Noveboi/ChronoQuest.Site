@@ -36,8 +36,8 @@
         }
     })
 
-    const chapterLinkSelector: LinkSelector = (question: QuestionPreview) => 
-        `/chapters/${chapter.id}/questions/${question.id}`;
+    const chapterLinkSelector: LinkSelector = (number: number) => 
+        `/chapters/${chapter.id}/questions/${number}`;
 
 </script>
 

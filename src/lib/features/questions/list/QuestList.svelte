@@ -17,7 +17,7 @@
             number={index + 1} 
             status={quest.status} 
             type={quest.type}
-            link={linkSelector(quest)}/>
+            link={linkSelector(index + 1)}/>
     {/each}
 </div>
 
